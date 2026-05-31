@@ -1,3 +1,15 @@
 @import "tailwindcss";
+@theme {
+    --color-blue-900: hsl(209, 23%, 22%); /* (Dark Mode Elements) */
+    --color-blue-950: hsl(207, 26%, 17%); /* (Dark Mode Background) */
+    --color-grey-950: hsl(200, 15%, 8%); /* (Light Mode Text) */
+    --color-grey-400: hsl(0, 0%, 50%); /* (Light Mode Input) */
+    --color-grey-50: hsl(0, 0%, 99%); /* (Light Mode Background) */
+    --color-white: hsl(0, 100%, 100%); /* (Dark Mode Text & Light Mode Elements) */
+    
+}
 
-
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+}

@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
+import { Nunito_Sans } from 'next/font/google'
 import "./globals.css";
+
+const nunitoSans = Nunito_Sans({
+  subsets: ['latin'],
+  weight: ['300', '600', '800']
+});
 
 
 export const metadata: Metadata = {
@@ -15,7 +21,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full antialiased`}
+      className={`${nunitoSans.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

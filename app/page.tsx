@@ -18,7 +18,7 @@ export default function Home() {
             <RegionFilter  />
           </section>
           <section>
-            <div>
+            <div className="grid grid-cols-3 gap-12">
               {countries.map(country => (
                 <CountryCard 
                   key={country.numericCode}
