@@ -23,7 +23,9 @@ export default function RootLayout({
       lang="en"
       className={`${nunitoSans.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-grey-50 text-grey-950">
+        {children}
+      </body>
     </html>
   );
 }
