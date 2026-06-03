@@ -1,4 +1,5 @@
-import Image from "next/image"
+import Image from "next/image";
+import Link from "next/link";
 
 interface CountryProps {
     flag: string;
@@ -17,8 +18,8 @@ export default function CountryCard({
 }: CountryProps
 ) {
     return (
-        <article>
-            <div>
+        <article className="bg-white shadow-md rounded-lg overflow-hidden">
+            <Link href={`/${name}`} className="inline-block">
                 <figure>
                     <Image   
                         src={flag}
@@ -28,24 +29,24 @@ export default function CountryCard({
                     />
                 </figure>
 
-                <div>
-                    <h3>{name}</h3>
+                <div className="p-6 text-grey-950">
+                    <h3 className="font-extrabold text-lg mb-4">{name}</h3>
                     <ul>
                         <li>
-                            <span>Population:</span>{" "}
+                            <span className="font-semibold">Population:</span>{" "}
                             {population}
                         </li>
                         <li>
-                            <span>Region:</span>{" "}
+                            <span className="font-semibold">Region:</span>{" "}
                             {region}
                         </li>
                         <li>
-                            <span>Capital:</span>{" "}
+                            <span className="font-semibold">Capital:</span>{" "}
                             {capital}
                         </li>
                     </ul>
                 </div>
-            </div>
+            </Link>
         </article>
     )
 }
