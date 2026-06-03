@@ -13,7 +13,7 @@ export default function Home() {
       
       <main>
         <div className="container">
-          <section>
+          <section className="flex items-center justify-between mb-12">
             <SearchBar  />
             <RegionFilter  />
           </section>

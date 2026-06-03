@@ -1,12 +1,21 @@
 export default function RegionFilter() {
-    const regions = ['Africa', 'America', 'Asia', 'Europa', 'Oceania'];
+    const regions = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
     return (
         <form>
             <div>
-                <select name="countryRegion" id="countryRegion">
+                <select 
+                    name="countryRegion" 
+                    id="countryRegion" 
+                    className="bg-white shadow-md px-6 py-1 text-grey-950 font-light"
+                >
                     <option value="">Filter by Region</option>
                     {regions.map(region => (
-                        <option key={region} value={region.toLowerCase()}>{region}</option>
+                        <option 
+                            key={region} 
+                            value={region.toLowerCase()}
+                        >
+                            {region}
+                        </option>
                     ))}
                 </select>
             </div>
