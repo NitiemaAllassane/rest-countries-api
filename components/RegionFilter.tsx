@@ -6,7 +6,8 @@ export default function RegionFilter() {
                 <select 
                     name="countryRegion" 
                     id="countryRegion" 
-                    className="bg-white shadow-md px-6 py-1 text-grey-950 font-light"
+                    className="bg-white shadow-md px-6 py-4 text-grey-950 font-light
+                    dark:bg-blue-900 dark:text-white"
                 >
                     <option value="">Filter by Region</option>
                     {regions.map(region => (

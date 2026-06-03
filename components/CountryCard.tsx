@@ -18,7 +18,7 @@ export default function CountryCard({
 }: CountryProps
 ) {
     return (
-        <article className="bg-white shadow-md rounded-lg overflow-hidden">
+        <article className="bg-white dark:bg-blue-900 shadow-md rounded-lg overflow-hidden">
             <Link href={`/${name}`} className="inline-block">
                 <figure className="w-full">
                     <Image   
@@ -30,7 +30,7 @@ export default function CountryCard({
                     />
                 </figure>
 
-                <div className="p-6 text-grey-950">
+                <div className="p-6 text-grey-950 dark:text-white ">
                     <h3 className="font-extrabold text-lg mb-4">{name}</h3>
                     <ul>
                         <li>

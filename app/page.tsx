@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import RegionFilter from "@/components/RegionFilter";
 import CountryCard from "@/components/CountryCard";
@@ -9,8 +8,6 @@ export default function Home() {
   const countries = data.slice();
   return (
     <div>
-      <Header   />
-      
       <main>
         <div className="container">
           <section className="flex flex-col gap-12 md:gap-0 md:flex-row md:items-center md:justify-between mb-12">
