@@ -13,12 +13,12 @@ export default function Home() {
       
       <main>
         <div className="container">
-          <section className="flex items-center justify-between mb-12">
+          <section className="flex flex-col gap-12 md:gap-0 md:flex-row md:items-center md:justify-between mb-12">
             <SearchBar  />
             <RegionFilter  />
           </section>
           <section>
-            <div className="grid grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-12">
               {countries.map(country => (
                 <CountryCard 
                   key={country.numericCode}

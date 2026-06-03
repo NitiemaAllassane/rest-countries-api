@@ -20,12 +20,13 @@ export default function CountryCard({
     return (
         <article className="bg-white shadow-md rounded-lg overflow-hidden">
             <Link href={`/${name}`} className="inline-block">
-                <figure>
+                <figure className="w-full">
                     <Image   
                         src={flag}
                         alt={`${name}'s flag`}
                         width={360}
-                        height={210}
+                        height={235}
+                        className="w-full h-full object-cover"
                     />
                 </figure>
 

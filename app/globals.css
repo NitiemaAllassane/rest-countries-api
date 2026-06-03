@@ -13,10 +13,8 @@
 .container {
     max-width: 1080px;
     margin: 0 auto;
-}
 
-
-*:focus-visible {
-    outline: 2px solid var(--color-grey-400);
-    outline-offset: 2px;
+    @media screen and (max-width: 1144px) {
+        max-width: 90%;
+    }
 }
