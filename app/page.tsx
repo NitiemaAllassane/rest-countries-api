@@ -2,6 +2,7 @@ import SearchBar from "@/components/SearchBar";
 import RegionFilter from "@/components/RegionFilter";
 import CountryCard from "@/components/CountryCard";
 import { getCountries } from "@/lib/api";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 
 
@@ -9,7 +10,7 @@ export default async function Home() {
   const countries = await getCountries();
   return (
     <div className="pb-16">
-      <main>
+      <main className="relative">
         <div className="container">
           <section className="flex flex-col gap-12 md:gap-0 md:flex-row md:items-center md:justify-between mb-12">
             <SearchBar  />
@@ -30,6 +31,7 @@ export default async function Home() {
             </div>
           </section>
         </div>
+        <ScrollToTopButton  />
       </main>
     </div>
   );
