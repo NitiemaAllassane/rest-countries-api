@@ -113,3 +113,5 @@ export interface CoatOfArms {
   png?: string;
   svg?: string;
 }
+
+export type Region = 'Africa' |'America' | 'Asia' | 'Europe'| 'Oceania';

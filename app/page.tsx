@@ -7,21 +7,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { Region } from "@/lib/types";
 
 
 
 export default async function Home({ searchParams } : {
   searchParams: Promise<{
-    country?: string
+    country?: string,
+    region?: Region
   }>
 }) {
   const countries = await getCountries();
 
   const params = await searchParams;
   const countryName = params.country ?? '';
-  const filteredCountriesByName = countries.filter((country) => (country.name.common.toLowerCase().includes(countryName)));
+  const region = params.region ?? '';
 
-  const displayedCountries = countryName === "" ? countries : filteredCountriesByName;
+  
+  const displayedCountries = countries.filter((country) => {
+    const matchesName =
+      country.name.common
+        .toLowerCase()
+        .includes(countryName.toLowerCase());
+
+    const matchesRegion =
+      region === "" || country.region === region;
+
+    return matchesName && matchesRegion;
+  });
 
   return (
     <div className="pb-16">
@@ -51,7 +64,7 @@ export default async function Home({ searchParams } : {
                 text-grey-400 dark:text-grey-50 gap-2"
               >
                 <FontAwesomeIcon icon={faMagnifyingGlass} className="text-3xl" />
-                <p className="text-3xl">No results found!</p>
+                <p className="text-2xl">No search results found 😓!</p>
               </div>
             )}
           </section>

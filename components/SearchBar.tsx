@@ -18,7 +18,7 @@ export default function SearchBar() {
             params.delete('country');
         }
 
-        replace(`${pathname}?${params.toString().toLowerCase()}`);
+        replace(`${pathname}?${params.toString()}`);
     }
 
     return (
