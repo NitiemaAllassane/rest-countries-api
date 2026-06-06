@@ -3,6 +3,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function SearchBar() {
     const searchParams = useSearchParams();
@@ -10,8 +11,8 @@ export default function SearchBar() {
     const { replace } = useRouter();
 
 
-    function handleSearch(country: string) {
-        const params = new URLSearchParams(searchParams);
+    const handleSearch = useDebouncedCallback((country: string) => {
+        const params = new URLSearchParams(searchParams.toString());
         if (country) {
             params.set('country', country);
         } else {
@@ -19,12 +20,13 @@ export default function SearchBar() {
         }
 
         replace(`${pathname}?${params.toString()}`);
-    }
+    }, 300);
 
     return (
         <form 
             className="bg-white shadow-md px-8 py-2 md:w-[40%] 
             focus-within:ring-2 focus-within:ring-grey-400 dark:bg-blue-900"
+            onSubmit={(e) => e.preventDefault()}
         >
             <div className="flex items-center gap-6 w-full">
                 <span>
@@ -34,7 +36,7 @@ export default function SearchBar() {
                     />
                 </span>
                 <input 
-                    type="text" 
+                    type="search"
                     name="countryName" 
                     id="countryName" 
                     placeholder="Search for a country..."

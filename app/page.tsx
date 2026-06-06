@@ -60,7 +60,7 @@ export default async function Home({ searchParams } : {
               </div>
             ) : (
               <div 
-                className="flex items-center justify-center text-center py-24
+                className="flex flex-col sm:flex-row items-center justify-center text-center py-24
                 text-grey-400 dark:text-grey-50 gap-2"
               >
                 <FontAwesomeIcon icon={faMagnifyingGlass} className="text-3xl" />

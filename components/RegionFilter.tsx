@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 import { Region } from "@/lib/types";
 
 export default function RegionFilter() {
@@ -12,8 +13,8 @@ export default function RegionFilter() {
     const regions: Region[] = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
 
 
-    function handleFilter(region: Region) {
-        const params = new URLSearchParams(searchParams);
+    const handleFilter = useDebouncedCallback((region: Region) => {
+        const params = new URLSearchParams(searchParams.toString());
 
         if (region) {
             params.set('region', region);
@@ -22,9 +23,9 @@ export default function RegionFilter() {
         }
 
         replace(`${pathname}?${params.toString()}`);
-    }
+    }, 300);
     return (
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
             <div>
                 <select 
                     name="countryRegion" 
