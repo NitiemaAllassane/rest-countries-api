@@ -3,6 +3,7 @@ import Link from "next/link";
  interface CountryProps {
     flag: string;
     name: string;
+    code: string;
     population: number;
     region: string;
     capital: string;
@@ -11,6 +12,7 @@ import Link from "next/link";
 export default function CountryCard({
     flag,
     name,
+    code,
     population,
     region,
     capital
@@ -18,7 +20,7 @@ export default function CountryCard({
 ) {
     return (
         <article className="bg-white dark:bg-blue-900 shadow-md rounded-lg overflow-hidden">
-            <Link href={`/${name}`} className="inline-block">
+            <Link href={`/country/${code}`} className="inline-block">
                 <figure className="w-full">
                     <Image   
                         src={flag}

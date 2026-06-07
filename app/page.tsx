@@ -50,6 +50,7 @@ export default async function Home({ searchParams } : {
                 {displayedCountries.map((country) => (
                   <CountryCard 
                     key={country.cca3}
+                    code={country.cca3}
                     flag={country.flags.svg} 
                     name={country.name.common}
                     population={country.population}
