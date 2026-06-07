@@ -14,7 +14,7 @@ export default async function Page({
     
     
     return (
-        <div className="text-grey-950 dark:text-white">
+        <div className="text-grey-950 dark:text-white pb-16">
             <main>
                 <div className="container">
                     <div>
@@ -27,18 +27,19 @@ export default async function Page({
                         </Link>
                     </div>
 
-                    <section className="flex items-center gap-32 mt-16">
-                        <picture className="w-1/2">
+                    <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-32 mt-16">
+                        <picture className="w-full h-full lg:w-1/2">
                             <Image
                                 src={currentCountry.flags.svg}  
                                 alt={`${currentCountry.name.common} flag image`}
                                 width={450}
                                 height={320}
+                                className="w-full h-full object-cover"
                             />
                         </picture>
-                        <div>
+                        <div className="lg:w-1/2">
                             <h1 className="text-3xl font-extrabold mb-6">{currentCountry.name.common}</h1>
-                            <div className="grid grid-cols-2 gap-24 mb-16">
+                            <div className="grid grid-cols-1 gap-12 mb-12 lg:grid-cols-2 md:gap-24 md:mb-16">
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <span className="font-semibold">Native Name:</span> {"  "}
@@ -62,7 +63,7 @@ export default async function Page({
                                     </li>
                                 </ul>
 
-                                <ul>
+                                <ul className="flex flex-col gap-2">
                                     <li>
                                         <span className="font-semibold">Top Level Domain:</span> {"  "}
                                         {currentCountry.tld?.[0] ?? ""}
