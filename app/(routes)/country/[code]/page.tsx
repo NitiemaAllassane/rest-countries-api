@@ -20,7 +20,7 @@ export default async function Page({
                     <div>
                         <Link 
                             href={`/`}
-                            className="shadow-md bg-white px-6 py-2 rounded-sm flex items-center gap-3 w-fit"
+                            className="shadow-md bg-white dark:bg-blue-900 dark:text-white px-6 py-2 rounded-sm flex items-center gap-3 w-fit"
                         >
                             <FontAwesomeIcon icon={faArrowLeft} />
                             Back
@@ -91,7 +91,7 @@ export default async function Page({
                                                 <Link 
                                                     key={border}
                                                     href={`/country/${borderCountry?.cca3}`}
-                                                    className="shadow-md bg-white px-4 py-1 rounded-sm flex items-center gap-3 w-fit"
+                                                    className="shadow-md bg-white dark:bg-blue-900 dark:text-white px-4 py-1 rounded-sm flex items-center gap-3 w-fit"
                                                 >
                                                     {borderCountry?.name.common ?? ''}
                                                 </Link>
