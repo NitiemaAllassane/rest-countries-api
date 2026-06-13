@@ -65,7 +65,7 @@ export default async function Home({ searchParams } : {
                 text-grey-400 dark:text-grey-50 gap-2"
               >
                 <FontAwesomeIcon icon={faMagnifyingGlass} className="text-3xl" />
-                <p className="text-2xl">No search results found 😓!</p>
+                <p className="text-xl">No search results found 😓!</p>
               </div>
             )}
           </section>

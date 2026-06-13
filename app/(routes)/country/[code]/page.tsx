@@ -3,13 +3,17 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { getCountryByCode, getCountries } from "@/lib/api";
+import { notFound } from "next/navigation";
 
 export default async function Page({ 
     params 
 }: { params: Promise<{ code: string }>}
 ) {
     const { code } = await params;
+    if (code.length !== 3) notFound();
+
     const currentCountry = await getCountryByCode(code);
+    console.log(currentCountry);
     const countries = await getCountries();
     
     
@@ -30,51 +34,51 @@ export default async function Page({
                     <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-32 mt-16">
                         <picture className="w-full h-full lg:w-1/2">
                             <Image
-                                src={currentCountry.flag.url_svg ?? ''}  
-                                alt={`${currentCountry.names.common} flag image`}
+                                src={currentCountry?.flag.url_svg ?? ''}  
+                                alt={`${currentCountry?.names.common} flag image`}
                                 width={450}
                                 height={320}
                                 className="w-full h-full object-cover"
                             />
                         </picture>
                         <div className="lg:w-1/2">
-                            <h1 className="text-3xl font-extrabold mb-6">{currentCountry.names.common}</h1>
+                            <h1 className="text-3xl font-extrabold mb-6">{currentCountry?.names.common}</h1>
                             <div className="grid grid-cols-1 gap-12 mb-12 lg:grid-cols-2 md:gap-24 md:mb-16">
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <span className="font-semibold">Native Name:</span> {"  "}
-                                        {Object.values(currentCountry.names.native ?? {})[0]?.common}
+                                        {Object.values(currentCountry?.names.native ?? {})[0]?.common}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Population:</span> {"  "}
-                                        {currentCountry.population}
+                                        {currentCountry?.population}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Region:</span> {"  "}
-                                        {currentCountry.region}
+                                        {currentCountry?.region}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Sub Region:</span> {"  "}
-                                        {currentCountry.subregion ?? ''}
+                                        {currentCountry?.subregion ?? ''}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Capital:</span> {"  "}
-                                        {currentCountry.capitals?.[0]?.name ?? ''}
+                                        {currentCountry?.capitals?.[0]?.name ?? ''}
                                     </li>
                                 </ul>
 
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <span className="font-semibold">Top Level Domain:</span> {"  "}
-                                        {currentCountry.tlds?.[0] ?? ""}
+                                        {currentCountry?.tlds?.[0] ?? ""}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Currencies:</span> {"  "}
-                                       {Object.values(currentCountry.currencies ?? {}).map(currency => currency.name).join(", ")}
+                                       {Object.values(currentCountry?.currencies ?? {}).map(currency => currency.name).join(", ")}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Languages:</span> {"  "}
-                                        {Object.values(currentCountry.languages ?? {}).join(", ")}
+                                        {Object.values(currentCountry?.languages ?? {}).join(", ")}
                                     </li>
                                 </ul>
                             </div>
@@ -83,7 +87,7 @@ export default async function Page({
                                 <div className="flex flex-wrap items-center gap-4">
                                     <span className="font-semibold">Border countries:</span>
                                     <div className="flex items-center flex-wrap gap-2">
-                                        {currentCountry.borders?.map((border) => {
+                                        {currentCountry?.borders?.map((border) => {
                                             const borderCountry = countries.find(
                                                 (country) => country.codes.alpha_3 === border
                                             );

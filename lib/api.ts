@@ -1,5 +1,6 @@
 import { Country } from "./types";
 
+
 const API_KEY = process.env.RESTCOUNTRIES_API_KEY;
 
 export async function getCountries() {
@@ -30,6 +31,10 @@ export async function getCountries() {
 
 
 export async function getCountryByCode(code: string) {
+    if (code.length !== 3) {
+        return;
+    }
+    
     try {
         const response = await fetch(
             `https://api.restcountries.com/countries/v5/codes.alpha_3/${code}`,
