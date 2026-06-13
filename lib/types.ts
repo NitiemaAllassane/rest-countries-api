@@ -46,3 +46,7 @@ export interface Country {
     symbol?: string;
   }[];
 }
+
+
+
+export type Region = 'Africa' |'America' | 'Asia' | 'Europe'| 'Oceania';

@@ -18,10 +18,7 @@ export default async function Home({ searchParams } : {
   }>
 }) {
   const countries = await getCountries();
-
-  console.log(countries);
   
-
   const params = await searchParams;
   const countryName = params.country ?? '';
   const region = params.region ?? '';
@@ -29,7 +26,7 @@ export default async function Home({ searchParams } : {
   
   const displayedCountries = countries.filter((country) => {
     const matchesName =
-      country.name.common
+      country.names.common
         .toLowerCase()
         .includes(countryName.toLowerCase());
 
@@ -52,13 +49,13 @@ export default async function Home({ searchParams } : {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-12">
                 {displayedCountries.map((country) => (
                   <CountryCard 
-                    key={country.cca3}
-                    code={country.cca3}
-                    flag={country.flags.svg} 
-                    name={country.name.common}
+                    key={country.codes.alpha_3}
+                    code={country.codes.alpha_3}
+                    flag={country.flag.url_svg ?? ''} 
+                    name={country.names.common}
                     population={country.population}
                     region={country.region}
-                    capital={country.capital?.[0] ?? "No Capital"}
+                    capital={country.capitals?.[0]?.name ?? "No Capital"}
                   />
                 ))}
               </div>

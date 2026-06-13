@@ -42,8 +42,10 @@ export async function getCountryByCode(code: string) {
             throw new Error("Country not found");
         }
 
-        const country: Country[] =  await response.json();
-        console.log(country[0]);
+        const result =  await response.json();
+        const country: Country[] = result.data.objects
+        // console.log(country);
+
         return country[0];
 
     } catch (error) {

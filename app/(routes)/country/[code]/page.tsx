@@ -30,20 +30,20 @@ export default async function Page({
                     <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-32 mt-16">
                         <picture className="w-full h-full lg:w-1/2">
                             <Image
-                                src={currentCountry.flags.svg}  
-                                alt={`${currentCountry.name.common} flag image`}
+                                src={currentCountry.flag.url_svg ?? ''}  
+                                alt={`${currentCountry.names.common} flag image`}
                                 width={450}
                                 height={320}
                                 className="w-full h-full object-cover"
                             />
                         </picture>
                         <div className="lg:w-1/2">
-                            <h1 className="text-3xl font-extrabold mb-6">{currentCountry.name.common}</h1>
+                            <h1 className="text-3xl font-extrabold mb-6">{currentCountry.names.common}</h1>
                             <div className="grid grid-cols-1 gap-12 mb-12 lg:grid-cols-2 md:gap-24 md:mb-16">
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <span className="font-semibold">Native Name:</span> {"  "}
-                                        {Object.values(currentCountry.name.nativeName ?? {})[0]?.common}
+                                        {Object.values(currentCountry.names.native ?? {})[0]?.common}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Population:</span> {"  "}
@@ -59,14 +59,14 @@ export default async function Page({
                                     </li>
                                     <li>
                                         <span className="font-semibold">Capital:</span> {"  "}
-                                        {currentCountry.capital?.[0] ?? ''}
+                                        {currentCountry.capitals?.[0]?.name ?? ''}
                                     </li>
                                 </ul>
 
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <span className="font-semibold">Top Level Domain:</span> {"  "}
-                                        {currentCountry.tld?.[0] ?? ""}
+                                        {currentCountry.tlds?.[0] ?? ""}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Currencies:</span> {"  "}
@@ -85,16 +85,16 @@ export default async function Page({
                                     <div className="flex items-center flex-wrap gap-2">
                                         {currentCountry.borders?.map((border) => {
                                             const borderCountry = countries.find(
-                                                (country) => country.cca3 === border
+                                                (country) => country.codes.alpha_3 === border
                                             );
                                             
                                             return (
                                                 <Link 
                                                     key={border}
-                                                    href={`/country/${borderCountry?.cca3}`}
+                                                    href={`/country/${borderCountry?.codes.alpha_3}`}
                                                     className="shadow-md bg-white dark:bg-blue-900 dark:text-white px-4 py-1 rounded-sm flex items-center gap-3 w-fit"
                                                 >
-                                                    {borderCountry?.name.common ?? ''}
+                                                    {borderCountry?.names.common ?? ''}
                                                 </Link>
                                             );
                                         })}
