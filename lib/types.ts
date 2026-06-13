@@ -1,117 +1,48 @@
 export interface Country {
-  name: Name;
-  tld: string[];
-  cca2: string;
-  ccn3?: string;
-  cca3: string;
-  cioc?: string;
+  uuid: string;
 
-  independent?: boolean;
-  status: string;
-  unMember: boolean;
-
-  currencies?: Record<string, Currency>;
-
-  idd: {
-    root?: string;
-    suffixes?: string[];
+  names: {
+    common: string;
+    official: string;
+    native?: Record<string, {
+      common: string;
+      official: string;
+    }>;
   };
 
-  capital?: string[];
+  codes: {
+    alpha_2: string;
+    alpha_3: string;
+  };
 
-  altSpellings: string[];
+  flag: {
+    url_svg?: string;
+    url_png?: string;
+    emoji?: string;
+  };
 
   region: string;
   subregion?: string;
 
-  languages?: Record<string, string>;
+  population: number;
 
-  translations: Record<string, Translation>;
-
-  latlng: [number, number];
-
-  landlocked: boolean;
+  capitals?: {
+    name: string;
+    primary: boolean;
+  }[];
 
   borders?: string[];
 
-  area: number;
+  tlds?: string[];
 
-  demonyms?: {
-    eng: Demonym;
-    fra?: Demonym;
-  };
+  languages?: {
+    name: string;
+    bcp47?: string;
+  }[];
 
-  flag: string;
-
-  maps: {
-    googleMaps: string;
-    openStreetMaps: string;
-  };
-
-  population: number;
-
-  fifa?: string;
-
-  car: {
-    signs?: string[];
-    side: "left" | "right";
-  };
-
-  timezones: string[];
-
-  continents: string[];
-
-  flags: Flags;
-
-  coatOfArms: CoatOfArms;
-
-  startOfWeek: string;
-
-  capitalInfo?: {
-    latlng?: [number, number];
-  };
-
-  postalCode?: {
-    format?: string;
-    regex?: string;
-  };
+  currencies?: {
+    code: string;
+    name: string;
+    symbol?: string;
+  }[];
 }
-
-export interface Name {
-  common: string;
-  official: string;
-  nativeName?: Record<string, NativeName>;
-}
-
-export interface NativeName {
-  official: string;
-  common: string;
-}
-
-export interface Currency {
-  name: string;
-  symbol?: string;
-}
-
-export interface Translation {
-  official: string;
-  common: string;
-}
-
-export interface Demonym {
-  f: string;
-  m: string;
-}
-
-export interface Flags {
-  png: string;
-  svg: string;
-  alt?: string;
-}
-
-export interface CoatOfArms {
-  png?: string;
-  svg?: string;
-}
-
-export type Region = 'Africa' |'America' | 'Asia' | 'Europe'| 'Oceania';
