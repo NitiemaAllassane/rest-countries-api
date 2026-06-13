@@ -19,6 +19,9 @@ export default async function Home({ searchParams } : {
 }) {
   const countries = await getCountries();
 
+  console.log(countries);
+  
+
   const params = await searchParams;
   const countryName = params.country ?? '';
   const region = params.region ?? '';

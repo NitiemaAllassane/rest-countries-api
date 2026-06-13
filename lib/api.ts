@@ -1,9 +1,16 @@
 import { Country } from "./types";
 
+const API_KEY = process.env.RESTCOUNTRIES_API_KEY;
+
 export async function getCountries() {
     try {
         const response = await fetch(
-            'https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags,cca3'
+            'https://api.restcountries.com/countries/v5',
+            {
+                headers: {
+                    'Authorization': `Bearer ${API_KEY}`
+                }
+            }
         );
 
         if (!response.ok) {
@@ -11,7 +18,8 @@ export async function getCountries() {
             throw new Error(apiError.message);
         }
         
-        const countries: Country[] = await response.json();
+        const result = await response.json();
+        const countries: Country[] = result.data.objects;
         return countries;
 
     } catch (error) {
@@ -23,7 +31,10 @@ export async function getCountries() {
 
 export async function getCountryByCode(code: string) {
     try {
-        const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+        const response = await fetch(
+            `https://api.restcountries.com/countries/v5/codes.alpha_3/${code}`,
+            { headers: { 'Authorization': `Bearer ${API_KEY}` } }
+        );
 
         if (!response.ok) {
             const apiError = await response.json();
