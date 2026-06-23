@@ -31,15 +31,15 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot/countries_desk.png)
-![](./screenshot/countries_mob.png)
-![](./screenshot/countries_dark_desk.png)
-![](./screenshot/countries_dark_mob.png)
+![](./public/screenshot/countries_desk.png)
+![](./public/screenshot/countries_mob.png)
+![](./public/screenshot/countries_dark_desk.png)
+![](./public/screenshot/countries_dark_mob.png)
 
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [[Add live site URL here](https://countries-lovat-chi.vercel.app/)](https://countries-lovat-chi.vercel.app/)
+- Live Site URL: [https://countries-lovat-chi.vercel.app/](https://countries-lovat-chi.vercel.app/)
 
 ## My process
 
