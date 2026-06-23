@@ -1,13 +1,13 @@
 import SearchBar from "@/components/SearchBar";
 import RegionFilter from "@/components/RegionFilter";
 import CountryCard from "@/components/CountryCard";
-import { getCountries } from "@/lib/api";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { Region } from "@/lib/types";
+import data from '@/data.json';
 
 
 
@@ -17,7 +17,7 @@ export default async function Home({ searchParams } : {
     region?: Region
   }>
 }) {
-  const countries = await getCountries();
+  const countries = data.slice();
   
   const params = await searchParams;
   const countryName = params.country ?? '';
@@ -26,7 +26,7 @@ export default async function Home({ searchParams } : {
   
   const displayedCountries = countries.filter((country) => {
     const matchesName =
-      country.names.common
+      country.name
         .toLowerCase()
         .includes(countryName.toLowerCase());
 
@@ -49,13 +49,13 @@ export default async function Home({ searchParams } : {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-12">
                 {displayedCountries.map((country) => (
                   <CountryCard 
-                    key={country.codes.alpha_3}
-                    code={country.codes.alpha_3}
-                    flag={country.flag.url_svg ?? ''} 
-                    name={country.names.common}
+                    key={country.alpha3Code}
+                    code={country.alpha3Code}
+                    flag={country.flags.svg} 
+                    name={country.name}
                     population={country.population}
                     region={country.region}
-                    capital={country.capitals?.[0]?.name ?? "No Capital"}
+                    capital={country.capital ?? "No Capital"}
                   />
                 ))}
               </div>

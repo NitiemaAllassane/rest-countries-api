@@ -10,7 +10,7 @@ export default function RegionFilter() {
     const { replace } = useRouter();
 
 
-    const regions: Region[] = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+    const regions: Region[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
 
     const handleFilter = useDebouncedCallback((region: Region) => {

@@ -2,19 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { getCountryByCode, getCountries } from "@/lib/api";
-import { notFound } from "next/navigation";
+import data from '@/data.json';
 
 export default async function Page({ 
     params 
 }: { params: Promise<{ code: string }>}
 ) {
     const { code } = await params;
-    if (code.length !== 3) notFound();
 
-    const currentCountry = await getCountryByCode(code);
-    console.log(currentCountry);
-    const countries = await getCountries();
+    const countries = data.slice();
+    const currentCountry = countries.find((country) => (country.alpha3Code === code));
+    
     
     
     return (
@@ -34,20 +32,20 @@ export default async function Page({
                     <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-32 mt-16">
                         <picture className="w-full h-full lg:w-1/2">
                             <Image
-                                src={currentCountry?.flag.url_svg ?? ''}  
-                                alt={`${currentCountry?.names.common} flag image`}
+                                src={currentCountry?.flags.svg ?? ''}  
+                                alt={`${currentCountry?.name} flag image`}
                                 width={450}
                                 height={320}
                                 className="w-full h-full object-cover"
                             />
                         </picture>
                         <div className="lg:w-1/2">
-                            <h1 className="text-3xl font-extrabold mb-6">{currentCountry?.names.common}</h1>
+                            <h1 className="text-3xl font-extrabold mb-6">{currentCountry?.name}</h1>
                             <div className="grid grid-cols-1 gap-12 mb-12 lg:grid-cols-2 md:gap-24 md:mb-16">
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <span className="font-semibold">Native Name:</span> {"  "}
-                                        {Object.values(currentCountry?.names.native ?? {})[0]?.common}
+                                        {Object.values(currentCountry?.nativeName ?? {})}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Population:</span> {"  "}
@@ -63,14 +61,14 @@ export default async function Page({
                                     </li>
                                     <li>
                                         <span className="font-semibold">Capital:</span> {"  "}
-                                        {currentCountry?.capitals?.[0]?.name ?? ''}
+                                        {currentCountry?.capital ?? ''}
                                     </li>
                                 </ul>
 
                                 <ul className="flex flex-col gap-2">
                                     <li>
                                         <span className="font-semibold">Top Level Domain:</span> {"  "}
-                                        {currentCountry?.tlds?.[0] ?? ""}
+                                        {currentCountry?.topLevelDomain ?? ""}
                                     </li>
                                     <li>
                                         <span className="font-semibold">Currencies:</span> {"  "}
@@ -78,7 +76,7 @@ export default async function Page({
                                     </li>
                                     <li>
                                         <span className="font-semibold">Languages:</span> {"  "}
-                                        {Object.values(currentCountry?.languages ?? {}).join(", ")}
+                                        {Object.values(currentCountry?.languages ?? {}).map(language => language.name).join(", ")}
                                     </li>
                                 </ul>
                             </div>
@@ -88,17 +86,17 @@ export default async function Page({
                                     <span className="font-semibold">Border countries:</span>
                                     <div className="flex items-center flex-wrap gap-2">
                                         {currentCountry?.borders?.map((border) => {
-                                            const borderCountry = countries.find(
-                                                (country) => country.codes.alpha_3 === border
-                                            );
+                                            const borderCountry = countries.find((country) => country.alpha3Code === border);
+                                            console.log(borderCountry);
+                                            
                                             
                                             return (
                                                 <Link 
                                                     key={border}
-                                                    href={`/country/${borderCountry?.codes.alpha_3}`}
+                                                    href={`/country/${border}`}
                                                     className="shadow-md bg-white dark:bg-blue-900 dark:text-white px-4 py-1 rounded-sm flex items-center gap-3 w-fit"
                                                 >
-                                                    {borderCountry?.names.common ?? ''}
+                                                    {borderCountry?.name}
                                                 </Link>
                                             );
                                         })}

@@ -14,9 +14,13 @@ export default function Error({
         <main>
             <div className="container">
                 <section className="text-center py-36">
-                    <h1 className="text-grey-950 dark:text-white text-xl md:text-3xl font-semibold mb-6">
-                        Oops! {error.message} 😓
+                    <h1 className="text-grey-950 dark:text-white text-xl md:text-3xl font-semibold mb-3">
+                        Oops! Something went wrong 😓
                     </h1>
+
+                   <p className="text-grey-950 dark:text-white mb-4">
+                    {error.message}
+                   </p>
                    
                     <button 
                         className="shadow-md bg-white dark:bg-blue-900 
